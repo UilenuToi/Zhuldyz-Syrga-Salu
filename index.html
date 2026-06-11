@@ -364,7 +364,7 @@
         line-height: 1.7;
       }
 
-      .host-names {
+      .detail-card .host-names {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -372,12 +372,12 @@
         margin-top: 20px;
         color: var(--wine);
         font-family: "Pastry Chef", "Noto Serif", serif;
-        font-size: clamp(30px, 4vw, 42px);
+        font-size: clamp(40px, 4vw, 62px);
         line-height: 1;
       }
 
-      .host-names::before,
-      .host-names::after {
+      .detail-card .host-names::before,
+      .detail-card .host-names::after {
         content: "";
         width: 20px;
         height: 1px;
@@ -558,14 +558,14 @@
         <h2>Кездесу орны</h2>
         <div class="details">
           <article class="detail-card">
-            <div class="detail-icon">28</div>
-            <h3>Маусым</h3>
-            <p>Жексенбі, 2026 жыл<br />Қонақтарды қарсы алу — 17:00</p>
-          </article>
-          <article class="detail-card">
             <div class="detail-icon">✦</div>
             <h3>Той иелері</h3>
             <p class="host-names">Ерхан · Алена</p>
+          </article>
+          <article class="detail-card">
+            <div class="detail-icon">28</div>
+            <h3>Маусым</h3>
+            <p>Жексенбі, 2026 жыл<br />Қонақтарды қарсы алу — 17:00</p>
           </article>
           <article class="detail-card">
             <div class="detail-icon">♡</div>
