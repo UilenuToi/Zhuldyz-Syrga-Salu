@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Жұлдыздың сырға салу салтанатына шақыру"
+    />
+    <title>Жұлдыздың сырға салуы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Serif:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "Pastry Chef";
+        src: url("ofont.ru_Pastry Chef_1.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      :root {
+        --ivory: #f7f0e5;
+        --paper: #fffaf2;
+        --wine: #6d1f2d;
+        --wine-dark: #42121b;
+        --gold: #c49a55;
+        --gold-light: #e5c88f;
+        --ink: #302521;
+        --muted: #776862;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 10%, rgba(196, 154, 85, 0.13), transparent 24rem),
+          radial-gradient(circle at 92% 58%, rgba(109, 31, 45, 0.08), transparent 28rem),
+          var(--ivory);
+        font-family: "Noto Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .ornament {
+        width: 88px;
+        height: 24px;
+        margin: 18px auto;
+        position: relative;
+      }
+
+      .ornament::before,
+      .ornament::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 34px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      .ornament::before {
+        left: 0;
+      }
+
+      .ornament::after {
+        right: 0;
+      }
+
+      .ornament span {
+        position: absolute;
+        inset: 5px auto auto 50%;
+        width: 14px;
+        height: 14px;
+        border: 1px solid var(--gold);
+        transform: translateX(-50%) rotate(45deg);
+      }
+
+      .hero {
+        min-height: 100svh;
+        position: relative;
+        display: grid;
+        place-items: center;
+        padding: 34px 20px;
+        isolation: isolate;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        background: url("Kuz-Uzatu-1.JPG") center 42% / cover no-repeat;
+        transform: scale(1.02);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(180deg, rgba(41, 17, 16, 0.22), rgba(42, 16, 17, 0.54)),
+          linear-gradient(90deg, rgba(50, 18, 24, 0.18), transparent 48%);
+      }
+
+      .hero-frame {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(255, 237, 201, 0.64);
+        pointer-events: none;
+      }
+
+      .hero-frame::before,
+      .hero-frame::after {
+        content: "✦";
+        position: absolute;
+        left: 50%;
+        color: var(--gold-light);
+        font-size: 18px;
+        transform: translateX(-50%);
+      }
+
+      .hero-frame::before {
+        top: -11px;
+      }
+
+      .hero-frame::after {
+        bottom: -11px;
+      }
+
+      .hero-content {
+        width: min(620px, 100%);
+        color: #fff8ed;
+        text-align: center;
+        text-shadow: 0 2px 24px rgba(35, 11, 14, 0.34);
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--gold-light);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        margin: 18px 0 4px;
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: clamp(62px, 13vw, 118px);
+        font-weight: 500;
+        line-height: 0.85;
+      }
+
+      .hero-names {
+        margin: 18px 0 0;
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-weight: 500;
+        font-size: clamp(34px, 7vw, 56px);
+        color: #ffe8bf;
+      }
+
+      .hero-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin: 28px auto 0;
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: 19px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hero-date::before,
+      .hero-date::after {
+        content: "";
+        width: 38px;
+        height: 1px;
+        background: rgba(255, 232, 191, 0.7);
+      }
+
+      .scroll-cue {
+        position: absolute;
+        bottom: 34px;
+        left: 50%;
+        color: #fff1d8;
+        font-size: 10px;
+        letter-spacing: 0.24em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transform: translateX(-50%);
+      }
+
+      .scroll-cue::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 30px;
+        margin: 9px auto 0;
+        background: linear-gradient(var(--gold-light), transparent);
+      }
+
+      .music-button {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 20;
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.54);
+        border-radius: 50%;
+        color: white;
+        background: rgba(70, 21, 31, 0.64);
+        backdrop-filter: blur(12px);
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .music-button:hover {
+        background: var(--wine);
+        transform: scale(1.05);
+      }
+
+      main {
+        position: relative;
+      }
+
+      .section {
+        width: min(1040px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 94px 0;
+        text-align: center;
+      }
+
+      .section-label {
+        margin: 0 0 12px;
+        color: var(--gold);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--wine-dark);
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: clamp(42px, 7vw, 72px);
+        font-weight: 500;
+        line-height: 0.96;
+      }
+
+      .lead {
+        max-width: 670px;
+        margin: 30px auto 0;
+        color: var(--muted);
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: clamp(23px, 3vw, 30px);
+        line-height: 1.45;
+      }
+
+      .names-script {
+        display: block;
+        margin: 20px 0;
+        color: var(--wine);
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-weight: 500;
+        font-size: clamp(44px, 8vw, 76px);
+        line-height: 1;
+      }
+
+      .meaning {
+        width: min(1160px, calc(100% - 36px));
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow: hidden;
+        border-radius: 26px;
+        background: var(--paper);
+        box-shadow: 0 24px 70px rgba(74, 38, 28, 0.09);
+      }
+
+      .meaning-photo {
+        min-height: 600px;
+        background: url("Kuz-Uzatu-1.JPG") center 48% / cover no-repeat;
+      }
+
+      .meaning-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(44px, 7vw, 90px);
+        text-align: left;
+      }
+
+      .meaning-copy h2 {
+        font-size: clamp(44px, 6vw, 70px);
+      }
+
+      .meaning-copy p {
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 46px;
+      }
+
+      .detail-card {
+        min-height: 220px;
+        padding: 32px 22px;
+        border: 1px solid rgba(196, 154, 85, 0.32);
+        border-radius: 18px;
+        background: rgba(255, 250, 242, 0.64);
+      }
+
+      .detail-icon {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 22px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        color: var(--wine);
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: 22px;
+      }
+
+      .detail-card h3 {
+        margin: 0 0 12px;
+        color: var(--wine-dark);
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      .detail-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .map-link {
+        display: inline-block;
+        margin-top: 16px;
+        color: var(--wine);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .countdown {
+        padding: 86px 18px;
+        color: #fff5e7;
+        text-align: center;
+        background:
+          linear-gradient(rgba(65, 15, 26, 0.91), rgba(65, 15, 26, 0.91)),
+          url("Kuz-Uzatu-1.JPG") center 52% / cover fixed;
+      }
+
+      .countdown .section-label {
+        color: var(--gold-light);
+      }
+
+      .countdown h2 {
+        color: #fff5e7;
+      }
+
+      .timer {
+        display: flex;
+        justify-content: center;
+        gap: clamp(20px, 7vw, 74px);
+        margin-top: 42px;
+      }
+
+      .timer strong {
+        display: block;
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: clamp(44px, 8vw, 78px);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .timer span {
+        display: block;
+        margin-top: 8px;
+        color: var(--gold-light);
+        font-size: 9px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        padding: 38px 20px 54px;
+        color: var(--gold-light);
+        text-align: center;
+        background: var(--wine-dark);
+      }
+
+      footer .names-script {
+        margin: 0 0 12px;
+        color: #fff2dc;
+        font-size: 42px;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 9px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          min-height: 100svh;
+        }
+
+        .hero::before {
+          background-position: center 35%;
+        }
+
+        .hero-content {
+          margin-top: 15vh;
+        }
+
+        .music-button {
+          top: 28px;
+          right: 28px;
+        }
+
+        .section {
+          padding: 72px 0;
+        }
+
+        .meaning {
+          grid-template-columns: 1fr;
+        }
+
+        .meaning-photo {
+          min-height: 440px;
+          background-position: center 44%;
+        }
+
+        .meaning-copy {
+          padding: 44px 28px 52px;
+          text-align: center;
+        }
+
+        .details {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-card {
+          min-height: auto;
+        }
+
+        .countdown {
+          background-attachment: scroll;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <button class="music-button" id="musicButton" aria-label="Музыканы қосу">
+      <span id="musicIcon">♪</span>
+    </button>
+    <audio id="music" src="Kuz-Uzatu-music.mp3" loop preload="metadata"></audio>
+
+    <header class="hero">
+      <div class="hero-frame"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Шақыру билеті</p>
+        <h1>Сырға салу</h1>
+        <p class="hero-names">Жұлдыз</p>
+        <p class="hero-date">28 маусым · 2026</p>
+      </div>
+      <a class="scroll-cue" href="#invitation">Төмен қарай</a>
+    </header>
+
+    <main>
+      <section class="section" id="invitation">
+        <p class="section-label">Ардақты ағайын-туыс</p>
+        <h2>Қуанышымызға<br />ортақ болыңыз</h2>
+        <div class="ornament"><span></span></div>
+        <p class="lead">
+          Сіздерді қызымыз
+          <span class="names-script">Жұлдыздың</span>
+          сырға салу салтанатының қадірлі қонағы болуға шақырамыз.
+        </p>
+      </section>
+
+      <section class="meaning">
+        <div class="meaning-photo" role="img" aria-label="Қазақы әшекей таққан ару"></div>
+        <div class="meaning-copy">
+          <p class="section-label">Асыл дәстүр</p>
+          <h2>Сырға салу</h2>
+          <div class="ornament" style="margin-left: 0"><span></span></div>
+          <p>
+            Сырға салу — қыздың жаңа өмірге қадам басуын білдіретін ізгі дәстүр.
+            Салтанатта қызға сырға тағылып, үлкендер ақ батасын береді.
+          </p>
+          <p>
+            Осы ерекше сәттің куәсі болып, ақ тілегіңізді арнасаңыз — біз үшін
+            үлкен мәртебе.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">Салтанат жайлы</p>
+        <h2>Кездесу орны</h2>
+        <div class="details">
+          <article class="detail-card">
+            <div class="detail-icon">28</div>
+            <h3>Маусым</h3>
+            <p>Жексенбі, 2026 жыл<br />Қонақтарды қарсы алу — 17:00</p>
+          </article>
+          <article class="detail-card">
+            <div class="detail-icon">⌖</div>
+            <h3>Ақтөбе</h3>
+            <p>«Qurmet Hall» мейрамханасы<br />Ағайынды Жұбановтар көшесі, 276/1</p>
+            <a class="map-link" href="https://go.2gis.com/RN5QW" target="_blank" rel="noreferrer">
+              Картадан көру →
+            </a>
+          </article>
+          <article class="detail-card">
+            <div class="detail-icon">♡</div>
+            <h3>Ақ тілек</h3>
+            <p>Ақ тілегіңіз бен ақ батаңыз — біз үшін ең қымбат сый.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="countdown">
+        <p class="section-label">Кездескенше</p>
+        <h2>Салтанатқа дейін</h2>
+        <div class="timer" aria-label="Салтанатқа дейінгі уақыт">
+          <div><strong id="days">00</strong><span>Күн</span></div>
+          <div><strong id="hours">00</strong><span>Сағат</span></div>
+          <div><strong id="minutes">00</strong><span>Минут</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p class="names-script">Жұлдыздың сырға салуы</p>
+      <p>Сіздерді асыға күтеміз</p>
+    </footer>
+
+    <script>
+      const eventDate = new Date("2026-06-28T17:00:00+05:00").getTime();
+      const music = document.getElementById("music");
+      const musicButton = document.getElementById("musicButton");
+      const musicIcon = document.getElementById("musicIcon");
+
+      function updateCountdown() {
+        const distance = Math.max(0, eventDate - Date.now());
+        const days = Math.floor(distance / 86400000);
+        const hours = Math.floor((distance % 86400000) / 3600000);
+        const minutes = Math.floor((distance % 3600000) / 60000);
+
+        document.getElementById("days").textContent = String(days).padStart(2, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+
+      musicButton.addEventListener("click", async () => {
+        if (music.paused) {
+          await music.play();
+          musicIcon.textContent = "Ⅱ";
+        } else {
+          music.pause();
+          musicIcon.textContent = "♪";
+        }
+      });
+
+    </script>
+  </body>
+</html>
