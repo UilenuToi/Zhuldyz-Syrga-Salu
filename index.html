@@ -364,6 +364,26 @@
         line-height: 1.7;
       }
 
+      .host-names {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+        color: var(--wine);
+        font-family: "Pastry Chef", "Noto Serif", serif;
+        font-size: clamp(30px, 4vw, 42px);
+        line-height: 1;
+      }
+
+      .host-names::before,
+      .host-names::after {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--gold);
+      }
+
       .map-link {
         display: inline-block;
         margin-top: 16px;
@@ -543,12 +563,9 @@
             <p>Жексенбі, 2026 жыл<br />Қонақтарды қарсы алу — 17:00</p>
           </article>
           <article class="detail-card">
-            <div class="detail-icon">⌖</div>
-            <h3>Ақтөбе</h3>
-            <p>«Qurmet Hall» мейрамханасы<br />Ағайынды Жұбановтар көшесі, 276/1</p>
-            <a class="map-link" href="https://go.2gis.com/RN5QW" target="_blank" rel="noreferrer">
-              Картадан көру →
-            </a>
+            <div class="detail-icon">✦</div>
+            <h3>Той иелері</h3>
+            <p class="host-names">Ерхан · Алена</p>
           </article>
           <article class="detail-card">
             <div class="detail-icon">♡</div>
@@ -580,6 +597,23 @@
       const music = document.getElementById("music");
       const musicButton = document.getElementById("musicButton");
       const musicIcon = document.getElementById("musicIcon");
+      music.volume = 0.25;
+
+      async function startMusic() {
+        try {
+          await music.play();
+          musicIcon.textContent = "Ⅱ";
+        } catch {
+          document.addEventListener(
+            "pointerdown",
+            async () => {
+              await music.play();
+              musicIcon.textContent = "Ⅱ";
+            },
+            { once: true }
+          );
+        }
+      }
 
       function updateCountdown() {
         const distance = Math.max(0, eventDate - Date.now());
@@ -594,6 +628,7 @@
 
       updateCountdown();
       setInterval(updateCountdown, 60000);
+      startMusic();
 
       musicButton.addEventListener("click", async () => {
         if (music.paused) {
